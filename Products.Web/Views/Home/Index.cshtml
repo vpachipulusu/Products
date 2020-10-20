@@ -1,0 +1,56 @@
+﻿@{ this.ViewData["Title"] = "Home Page"; }
+
+<div class="page-hero bg-white text-primary" id="banner">
+    <partial name="_BublesAndCirclesPrtial" />
+    <div class="container">
+        <div class="row">
+            <div class="col-12 mb-5">
+                <div class="title text-center pt-5">
+                    <h1 class="display-2 text-primary">Products</h1>
+                    <h4 class="text-primary">Product Management</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="about" class="intro bg-light">
+    <div class="container text-center">
+        <h2>About</h2>
+        <div class="section desc text-left">
+            <div class="row">
+                <div class="col-12 col-md-8 offset-md-2">
+                    <p class="lead">
+                        <b>Products</b> management portal.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section About
+    {
+    <li class="nav-item">
+        <a class="nav-link" href="#about">
+            About
+        </a>
+    </li>
+}
+@section Register
+    {
+    <li class="nav-item">
+        <a class="nav-link" asp-area="Identity" asp-page="/Account/Register">
+            Register
+        </a>
+    </li>
+}
+@section Login
+    {
+    <li class="nav-item">
+        <a class="nav-link" asp-area="Identity" asp-page="/Account/Login">
+            Log in
+        </a>
+    </li>
+}
+
+
