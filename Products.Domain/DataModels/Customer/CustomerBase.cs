@@ -1,10 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Products.Domain.DataModels.Customer
 {
-    class CustomerBase
+    public class CustomerBase : EntityModelBase
     {
+        [Required]
+        [MaxLength(250)]
+        public string CustomerName { get; set; }
+        [Required]
+        [MaxLength(250)]
+        public string CustomerKeyContact { get; set; }
+        [Required]
+        [MaxLength(15)]
+        public string CustomerMobile { get; set; }
+        [Required]
+        [MaxLength(150)]
+        public string CustomerEmail { get; set; }
+        [Required]
+        [MaxLength(250)]
+        public string CustomerWeb { get; set; }
+        [Required]
+        public int OrganizationBaseId { get; set; }
     }
 }

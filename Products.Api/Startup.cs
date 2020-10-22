@@ -5,9 +5,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using Products.Api.Filters;
 using Products.Service.Configuration.Autofac;
 using Products.Service.Extensions;
-using Products.Service.Helpers;
 
 namespace Products.Api
 {
@@ -28,6 +28,7 @@ namespace Products.Api
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Products Api", Version = "v1" });
+                c.OperationFilter<CustomHeaderSwaggerAttribute>();
             });
         }
 
@@ -49,8 +50,6 @@ namespace Products.Api
             app.UseRouting();
 
             app.UseAuthorization();
-            // custom jwt auth middleware
-            app.UseMiddleware<JwtMiddleware>();
 
             app.UseEndpoints(endpoints =>
             {

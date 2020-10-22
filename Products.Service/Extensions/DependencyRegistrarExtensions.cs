@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Products.Domain.Models;
+using Products.Domain.Dto;
 using Products.Domain.Options;
 
 namespace Products.Service.Extensions

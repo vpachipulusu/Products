@@ -2,7 +2,7 @@
 using Products.Data.Base;
 using Products.Data.Interfaces;
 using Products.Domain.DataModels.Product;
-using Products.Domain.Models;
+using Products.Domain.Dto;
 
 namespace Products.Data.Repositories
 {

@@ -1,13 +1,9 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Products.Domain.DataModels.Product
 {
-    public class ProductCategoryBase
+    public class ProductCategoryBase : EntityModelBase
     {
-        [Key]
-        public int CategoryKey { get; set; }
         [Required]
         [MaxLength(20)]
         public string CategoryCode { get; set; }
@@ -15,11 +11,6 @@ namespace Products.Domain.DataModels.Product
         [MaxLength(100)]
         public string Category { get; set; }
         [Required]
-        [Column(TypeName = "datetime")]
-        public DateTime CreatedDate { get; set; }
-        [Column(TypeName = "datetime")]
-        public DateTime? ModifiedDate { get; set; }
-        [Required]
-        public int OrganisationKey { get; set; }
+        public int OrganizationBaseId { get; set; }
     }
 }

@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Options;
 using Products.Data.Base.Interfaces;
 using Products.Domain.DataModels;
-using Products.Domain.Models;
+using Products.Domain.Dto;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace Products.Data.Base
 {
-    public abstract class RepositoryBase<T> : IRepository<T> where T : EntityBase
+    public abstract class RepositoryBase<T> : IRepository<T> where T : EntityModelBase
     {
         private readonly DbConfig _config;
         protected readonly string TableName;
@@ -83,10 +83,10 @@ namespace Products.Data.Base
 
         public virtual async Task<T> UpsertAsync(T entity)
         {
-            //if (entity.Id == 0)
-            //    entity.DateCreated = DateTime.Now;
-            //else
-            //    entity.DateUpdated = DateTime.Now;
+            if (entity.Id == 0)
+                entity.DateCreated = DateTime.Now;
+            else
+                entity.DateUpdated = DateTime.Now;
 
             try
             {
@@ -97,7 +97,7 @@ namespace Products.Data.Base
                     {
                         var insertedEntity = await connection.QuerySingleOrDefaultAsync<T>(query, entity);
                         entity.Id = insertedEntity.Id;
-                        // entity.RowVersion = insertedEntity.RowVersion;
+                        entity.RowVersion = insertedEntity.RowVersion;
                     }
                     else
                     {

@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Products.Api.Base;
+using Products.Api.Filters;
 using Products.Data.Interfaces;
 using Products.Domain.DataModels.Product;
-using Products.Domain.Models;
-using Products.Service.Helpers;
+using Products.Domain.Dto;
 using System;
 
 
@@ -12,6 +12,7 @@ namespace Products.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [ApiKeyAuth]
     public class ProductController : CustomBaseController
     {
         protected readonly IProductBaseRepository ProductService;
@@ -22,7 +23,6 @@ namespace Products.Api.Controllers
         }
 
         // GET api/<ProductController>/5
-        [Authorize]
         [HttpGet("{id}")]
         public virtual IActionResult Get(int id)
         {
@@ -49,7 +49,6 @@ namespace Products.Api.Controllers
         }
 
         // GET api/<ProductController>
-        [Authorize]
         [HttpGet]
         public string Get()
         {
@@ -68,11 +67,11 @@ namespace Products.Api.Controllers
                     {
                         ProductName = product.ProductName,
                         ProductDescription = product.ProductDescription,
-                        SubCategoryKey = 1,
+                        ProductSubCategoryBaseId = 1,
                         ProductCode = "code",
                         ProductNetPrice = 100,
-                        CreatedDate = DateTime.Now,
-                        OrganisationId = 1
+                        DateCreated = DateTime.Now,
+                        OrganizationBaseId = 1
                     };
 
                     ProductService.UpsertAsync(entity);
@@ -89,7 +88,6 @@ namespace Products.Api.Controllers
         }
 
         // PUT api/<ProductController>/5
-        [Authorize]
         [HttpPut("{id}")]
         public virtual IActionResult Put(int id, [FromBody] ProductViewModel product)
         {
@@ -118,7 +116,6 @@ namespace Products.Api.Controllers
         }
 
         // DELETE api/<ProductController>/5
-        [Authorize]
         [HttpDelete("{id}")]
         public virtual IActionResult Delete(int id)
         {
