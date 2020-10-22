@@ -10,8 +10,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Configuration\" />
-	  <Folder Include="Context\" />
+	  <ProjectReference Include="..\Products.Domain\Products.Domain.csproj" />
 	</ItemGroup>
 
 </Project>
