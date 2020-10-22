@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Products.Domain.DataModels.Organization;
+using System.ComponentModel.DataAnnotations;
 
 namespace Products.Domain.DataModels
 {
@@ -21,6 +22,7 @@ namespace Products.Domain.DataModels
         public string EntityStatus { get; set; }
         [Required]
         public int OrganizationBaseId { get; set; }
+        public virtual OrganizationBase OrganizationBase { get; set; }
         [Required]
         public int SystemAdminId { get; set; }
     }

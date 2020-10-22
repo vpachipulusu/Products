@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Products.Domain.DataModels.Organization;
+using System.ComponentModel.DataAnnotations;
 
 namespace Products.Domain.DataModels.Customer
 {
@@ -21,5 +22,6 @@ namespace Products.Domain.DataModels.Customer
         public string CustomerWeb { get; set; }
         [Required]
         public int OrganizationBaseId { get; set; }
+        public virtual OrganizationBase OrganizationBase { get; set; }
     }
 }

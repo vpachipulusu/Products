@@ -1,14 +1,19 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
+using Products.Domain.DataModels.Address;
 
 namespace Products.Data.EF.Migrations.Configuration.Address
 {
-    public class AddressTypeBaseEntityTypeConfig : IEntityTypeConfiguration<AddressTypeBaseEntityTypeConfig>
+    public class AddressTypeBaseEntityTypeConfig : IEntityTypeConfiguration<AddressTypeBase>
     {
-        public void Configure(EntityTypeBuilder<AddressTypeBaseEntityTypeConfig> builder)
+        public void Configure(EntityTypeBuilder<AddressTypeBase> builder)
         {
-            throw new NotImplementedException();
+            builder.Property(b => b.DateCreated).IsRequired();
+            builder.Property(b => b.RowVersion).IsRequired();
+
+            builder.Property(b => b.AddressType).HasColumnType("varchar(50)").IsRequired();
+
+            builder.HasIndex(c => new { c.OrganizationBaseId });
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Products.Domain.DataModels.Organization;
+using System.ComponentModel.DataAnnotations;
 
 namespace Products.Domain.DataModels.Address
 {
@@ -8,6 +9,7 @@ namespace Products.Domain.DataModels.Address
         [MaxLength(50)]
         public string AddressType { get; set; }
         [Required]
-        public int OrganizationKey { get; set; }
+        public int OrganizationBaseId { get; set; }
+        public virtual OrganizationBase OrganizationBase { get; set; }
     }
 }

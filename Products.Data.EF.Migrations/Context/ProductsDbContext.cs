@@ -1,4 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Products.Data.EF.Migrations.Configuration;
+using Products.Data.EF.Migrations.Configuration.Address;
+using Products.Data.EF.Migrations.Configuration.Customer;
+using Products.Data.EF.Migrations.Configuration.Organization;
+using Products.Data.EF.Migrations.Configuration.Product;
+using Products.Data.EF.Migrations.Configuration.Sales;
+using Products.Data.EF.Migrations.Configuration.Users;
 using Products.Domain.DataModels;
 using Products.Domain.DataModels.Address;
 using Products.Domain.DataModels.Customer;
@@ -30,6 +37,26 @@ namespace Products.Data.EF.Migrations.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.ApplyConfiguration(new AddressBaseEntityTypeConfig());
+            modelBuilder.ApplyConfiguration(new AddressTypeBaseEntityTypeConfig());
+
+            modelBuilder.ApplyConfiguration(new CustomerBaseEntityTypeConfig());
+
+            modelBuilder.ApplyConfiguration(new OrganizationBaseEntityTypeConfig());
+
+            modelBuilder.ApplyConfiguration(new ProductBaseEntityTypeConfig());
+            modelBuilder.ApplyConfiguration(new ProductCategoryBaseEntityTypeConfig());
+            modelBuilder.ApplyConfiguration(new ProductSubCategoryBaseEntityTypeConfig());
+
+            modelBuilder.ApplyConfiguration(new SalesOrderBaseEntityTypeConfig());
+            modelBuilder.ApplyConfiguration(new SalesOrderProductBaseEntityTypeConfig());
+            modelBuilder.ApplyConfiguration(new SalesOrderProductStatusBaseEntityTypeConfig());
+            modelBuilder.ApplyConfiguration(new SalesOrderStatusBaseEntityTypeConfig());
+
+            modelBuilder.ApplyConfiguration(new UserBaseEntityTypeConfig());
+            modelBuilder.ApplyConfiguration(new UserRoleBaseEntityTypeConfig());
+
+            modelBuilder.ApplyConfiguration(new EntityBaseEntityTypeConfig());
         }
     }
 }

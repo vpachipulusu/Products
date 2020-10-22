@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Products.Domain.DataModels.Organization;
-using System;
 
 namespace Products.Data.EF.Migrations.Configuration.Organization
 {
@@ -9,7 +8,12 @@ namespace Products.Data.EF.Migrations.Configuration.Organization
     {
         public void Configure(EntityTypeBuilder<OrganizationBase> builder)
         {
-            throw new NotImplementedException();
+            builder.Property(b => b.DateCreated).IsRequired();
+            builder.Property(b => b.RowVersion).IsRequired();
+            builder.Property(b => b.SystemAdminId).IsRequired();
+            builder.Property(b => b.OAuthKey).IsRequired();
+
+            builder.Property(b => b.OrganizationName).HasColumnType("varchar(150)").IsRequired();
         }
     }
 }

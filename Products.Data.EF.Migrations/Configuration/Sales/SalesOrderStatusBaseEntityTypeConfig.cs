@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Products.Domain.DataModels.Sales;
-using System;
 
 namespace Products.Data.EF.Migrations.Configuration.Sales
 {
@@ -9,7 +8,13 @@ namespace Products.Data.EF.Migrations.Configuration.Sales
     {
         public void Configure(EntityTypeBuilder<SalesOrderStatusBase> builder)
         {
-            throw new NotImplementedException();
+            builder.Property(b => b.DateCreated).IsRequired();
+            builder.Property(b => b.RowVersion).IsRequired();
+            builder.Property(b => b.SalesOrderStatusSequence).IsRequired();
+
+            builder.Property(b => b.SalesOrderStatus).HasColumnType("varchar(150)").IsRequired();
+
+            builder.HasIndex(c => new { c.OrganizationBaseId });
         }
     }
 }

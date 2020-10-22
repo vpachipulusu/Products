@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Products.Domain.DataModels.Organization;
+using System.ComponentModel.DataAnnotations;
 
 namespace Products.Domain.DataModels.Product
 {
@@ -8,9 +9,14 @@ namespace Products.Domain.DataModels.Product
         [MaxLength(20)]
         public string SubCategoryCode { get; set; }
         [Required]
-        public int ProductCategoryId { get; set; }
+        [MaxLength(60)]
+        public string SubCategory { get; set; }
+        [Required]
+        public int ProductCategoryBaseId { get; set; }
+        public virtual ProductCategoryBase ProductCategoryBase { get; set; }
         [Required]
         public int OrganizationBaseId { get; set; }
+        public virtual OrganizationBase OrganizationBase { get; set; }
     }
 
 
