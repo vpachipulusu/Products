@@ -1,6 +1,8 @@
 using Autofac.Extensions.DependencyInjection;
+using AutoMapper;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
+using Products.Service.Mapping.AutoMapper;
 using Serilog;
 using Serilog.Events;
 using System;
@@ -50,6 +52,10 @@ namespace Products.Api
             Host.CreateDefaultBuilder(args)
                 .UseSerilog()
                 .UseServiceProviderFactory(new AutofacServiceProviderFactory())
+                .ConfigureServices((hostContext, services) =>
+                {
+                    services.AddAutoMapper(c => c.AddProfile<AutoMapperConfig>(), typeof(Program));
+                })
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();

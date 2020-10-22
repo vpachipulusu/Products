@@ -1,9 +1,9 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace Products.Domain.Dto
+namespace Products.Domain.Dto.Product
 {
-    public class ProductViewModel : EntityViewModelBase
+    public class ProductBaseViewModel : EntityViewModelBase
     {
         [Required]
         public int ProductSubCategoryBaseId { get; set; }

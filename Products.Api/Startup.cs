@@ -30,6 +30,7 @@ namespace Products.Api
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Products Api", Version = "v1" });
                 c.OperationFilter<CustomHeaderSwaggerAttribute>();
             });
+            services.AddMemoryCache();
         }
 
         public void ConfigureContainer(ContainerBuilder builder)
