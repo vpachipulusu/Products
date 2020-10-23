@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Caching.Memory;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Products.Api.Filters
@@ -11,6 +11,12 @@ namespace Products.Api.Filters
     public class ApiKeyAuthAttribute : Attribute, IAsyncActionFilter
     {
         private const string ApiKeyHeaderName = "ApiKey";
+        private readonly IMemoryCache _cache;
+
+        public ApiKeyAuthAttribute(IMemoryCache cache)
+        {
+            _cache = cache;
+        }
 
         public async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
         {
@@ -20,10 +26,15 @@ namespace Products.Api.Filters
                 return;
             }
 
-            var configuration = context.HttpContext.RequestServices.GetRequiredService<IConfiguration>();
-            var apiKey = configuration.GetValue<string>("ApiKey");
+            _cache.TryGetValue("ApiKeys", out List<string> apiKeys);
 
-            if (!apiKey.Equals(potentialApiKey))
+            if (apiKeys == null || apiKeys.Count == 0)
+            {
+                context.Result = new UnauthorizedResult();
+                return;
+            }
+
+            if (!apiKeys.Contains(potentialApiKey))
             {
                 context.Result = new UnauthorizedResult();
                 return;

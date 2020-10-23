@@ -16,19 +16,16 @@ namespace Products.Data.EF.Migrations.Configuration.Sales
             builder.Property(b => b.SalesOrderStatusSequence).IsRequired();
 
             builder.Property(b => b.SalesOrderStatus).HasColumnType("varchar(150)").IsRequired();
-
-            builder.HasIndex(c => new { c.OrganizationBaseId });
-
             builder.HasData(
-          new { Id = (int)OrderStatusType.Booked, SalesOrderProductStatus = OrderStatusType.Booked.GetDescription(), DateCreated = DateTime.Parse("2020-10-11 18:06:43.000"), SalesProductStatusSequence = 1, OrganizationBaseId = 1 },
-          new { Id = (int)OrderStatusType.Dispatched, SalesOrderProductStatus = OrderStatusType.Dispatched.GetDescription(), DateCreated = DateTime.Parse("2020-10-11 18:06:48.500"), SalesProductStatusSequence = 2, OrganizationBaseId = 1 },
-          new { Id = (int)OrderStatusType.Delivered, SalesOrderProductStatus = OrderStatusType.Delivered.GetDescription(), DateCreated = DateTime.Parse("2020-10-11 18:06:48.500"), SalesProductStatusSequence = 3, OrganizationBaseId = 1 },
-          new { Id = (int)OrderStatusType.Invoiced, SalesOrderProductStatus = OrderStatusType.Invoiced.GetDescription(), DateCreated = DateTime.Parse("2020-10-11 18:06:48.500"), SalesProductStatusSequence = 4, OrganizationBaseId = 1 },
-          new { Id = (int)OrderStatusType.Paid, SalesOrderProductStatus = OrderStatusType.Paid.GetDescription(), DateCreated = DateTime.Parse("2020-10-11 18:06:48.500"), SalesProductStatusSequence = 5, OrganizationBaseId = 1 },
-          new { Id = (int)OrderStatusType.Cancelled, SalesOrderProductStatus = OrderStatusType.Cancelled.GetDescription(), DateCreated = DateTime.Parse("2020-10-11 18:06:48.500"), SalesProductStatusSequence = 6, OrganizationBaseId = 1 },
-          new { Id = (int)OrderStatusType.Returned, SalesOrderProductStatus = OrderStatusType.Returned.GetDescription(), DateCreated = DateTime.Parse("2020-10-11 18:06:48.500"), SalesProductStatusSequence = 7, OrganizationBaseId = 1 },
-          new { Id = (int)OrderStatusType.PartlyDispatched, SalesOrderProductStatus = OrderStatusType.PartlyDispatched.GetDescription(), DateCreated = DateTime.Parse("2020-10-11 18:06:48.500"), SalesProductStatusSequence = 8, OrganizationBaseId = 1 },
-          new { Id = (int)OrderStatusType.PartlyDelivered, SalesOrderProductStatus = OrderStatusType.PartlyDelivered.GetDescription(), DateCreated = DateTime.Parse("2020-10-11 18:06:48.500"), SalesProductStatusSequence = 8, OrganizationBaseId = 1 }
+          new { Id = (int)OrderStatusType.Booked, SalesOrderStatus = OrderStatusType.Booked.GetDescription(), DateCreated = DateTime.Parse("2020-10-11 18:06:43.000"), SalesOrderStatusSequence = 1, OrganizationBaseId = 1 },
+          new { Id = (int)OrderStatusType.Dispatched, SalesOrderStatus = OrderStatusType.Dispatched.GetDescription(), DateCreated = DateTime.Parse("2020-10-11 18:06:48.500"), SalesOrderStatusSequence = 2, OrganizationBaseId = 1 },
+          new { Id = (int)OrderStatusType.Delivered, SalesOrderStatus = OrderStatusType.Delivered.GetDescription(), DateCreated = DateTime.Parse("2020-10-11 18:06:48.500"), SalesOrderStatusSequence = 3, OrganizationBaseId = 1 },
+          new { Id = (int)OrderStatusType.Invoiced, SalesOrderStatus = OrderStatusType.Invoiced.GetDescription(), DateCreated = DateTime.Parse("2020-10-11 18:06:48.500"), SalesOrderStatusSequence = 4, OrganizationBaseId = 1 },
+          new { Id = (int)OrderStatusType.Paid, SalesOrderStatus = OrderStatusType.Paid.GetDescription(), DateCreated = DateTime.Parse("2020-10-11 18:06:48.500"), SalesOrderStatusSequence = 5, OrganizationBaseId = 1 },
+          new { Id = (int)OrderStatusType.Cancelled, SalesOrderStatus = OrderStatusType.Cancelled.GetDescription(), DateCreated = DateTime.Parse("2020-10-11 18:06:48.500"), SalesOrderStatusSequence = 6, OrganizationBaseId = 1 },
+          new { Id = (int)OrderStatusType.Returned, SalesOrderStatus = OrderStatusType.Returned.GetDescription(), DateCreated = DateTime.Parse("2020-10-11 18:06:48.500"), SalesOrderStatusSequence = 7, OrganizationBaseId = 1 },
+          new { Id = (int)OrderStatusType.PartlyDispatched, SalesOrderStatus = OrderStatusType.PartlyDispatched.GetDescription(), DateCreated = DateTime.Parse("2020-10-11 18:06:48.500"), SalesOrderStatusSequence = 8, OrganizationBaseId = 1 },
+          new { Id = (int)OrderStatusType.PartlyDelivered, SalesOrderStatus = OrderStatusType.PartlyDelivered.GetDescription(), DateCreated = DateTime.Parse("2020-10-11 18:06:48.500"), SalesOrderStatusSequence = 8, OrganizationBaseId = 1 }
             );
         }
     }

@@ -1,44 +1,42 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Products.Api.Base;
 using Products.Api.Filters;
 using Products.Data.Interfaces;
 using Products.Domain.DataModels.Product;
-using Products.Domain.Dto;
+using Products.Domain.Dto.Product;
 using System;
+using System.Threading.Tasks;
 
 
 namespace Products.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [ApiKeyAuth]
+    [TypeFilter(typeof(ApiKeyAuthAttribute))]
     public class ProductController : CustomBaseController
     {
         protected readonly IProductBaseRepository ProductService;
+        private readonly IMapper _mapper;
 
-        public ProductController(IProductBaseRepository productService)
+        public ProductController(IProductBaseRepository productService, IMapper mapper)
         {
             ProductService = productService;
+            _mapper = mapper;
         }
 
         // GET api/<ProductController>/5
         [HttpGet("{id}")]
-        public virtual IActionResult Get(int id)
+        public virtual async Task<IActionResult> Get(int id)
         {
             try
             {
-                var entity = ProductService.GetByIdAsync(id).GetAwaiter().GetResult();
+                var entity = await ProductService.GetByIdAsync(id);
                 if (entity == null)
                     return new NotFoundResult();
 
-                var model = new ProductViewModel()
-                {
-                    Id = entity.Id,
-                    ProductName = entity.ProductName,
-                    ProductDescription = entity.ProductDescription
-                };
-
+                var model = _mapper.Map<ProductBaseViewModel>(entity);
                 return new ObjectResult(model);
             }
             catch (Exception e)
@@ -50,32 +48,30 @@ namespace Products.Api.Controllers
 
         // GET api/<ProductController>
         [HttpGet]
-        public string Get()
+        public virtual async Task<IActionResult> Get()
         {
-            return "value";
+            try
+            {
+                var results = await ProductService.GetAllAsync();
+                return new ObjectResult(results);
+            }
+            catch (Exception e)
+            {
+                base.LogError<ProductController>(e);
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
         }
 
         // POST api/<ProductController>
         [HttpPost]
-        public virtual IActionResult Post([FromBody] ProductViewModel product)
+        public virtual async Task<IActionResult> Post([FromBody] ProductBaseViewModel product)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    var entity = new ProductBase()
-                    {
-                        ProductName = product.ProductName,
-                        ProductDescription = product.ProductDescription,
-                        ProductSubCategoryBaseId = 1,
-                        ProductCode = "code",
-                        ProductNetPrice = 100,
-                        DateCreated = DateTime.Now,
-                        OrganizationBaseId = 1
-                    };
-
-                    ProductService.UpsertAsync(entity);
-                    return Ok();
+                    var entity = _mapper.Map<ProductBase>(product);
+                    return Ok(await ProductService.UpsertAsync(entity));
                 }
 
                 return new BadRequestResult();
@@ -89,21 +85,20 @@ namespace Products.Api.Controllers
 
         // PUT api/<ProductController>/5
         [HttpPut("{id}")]
-        public virtual IActionResult Put(int id, [FromBody] ProductViewModel product)
+        public virtual async Task<IActionResult> Put(int id, [FromBody] ProductBaseViewModel product)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    var entity = ProductService.GetByIdAsync(id).GetAwaiter().GetResult();
+                    var entity = await ProductService.GetByIdAsync(id);
                     if (entity == null)
                         return new NotFoundResult();
 
                     entity.ProductName = product.ProductName;
                     entity.ProductDescription = product.ProductDescription;
 
-                    ProductService.UpsertAsync(entity);
-                    return Ok();
+                    return Ok(await ProductService.UpsertAsync(entity));
                 }
 
                 return new BadRequestResult();
@@ -117,16 +112,15 @@ namespace Products.Api.Controllers
 
         // DELETE api/<ProductController>/5
         [HttpDelete("{id}")]
-        public virtual IActionResult Delete(int id)
+        public virtual async Task<IActionResult> Delete(int id)
         {
             try
             {
-                var entity = ProductService.GetByIdAsync(id).GetAwaiter().GetResult();
+                var entity = await ProductService.GetByIdAsync(id);
                 if (entity == null)
                     return new NotFoundResult();
 
-                ProductService.DeleteAsync(id);
-
+                await ProductService.DeleteAsync(id);
                 return Ok();
             }
             catch (Exception e)

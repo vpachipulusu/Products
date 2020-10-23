@@ -1,11 +1,13 @@
 using Autofac;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Products.Api.Filters;
+using Products.Data.EF.Migrations.Context;
 using Products.Service.Configuration.Autofac;
 using Products.Service.Extensions;
 
@@ -31,6 +33,7 @@ namespace Products.Api
                 c.OperationFilter<CustomHeaderSwaggerAttribute>();
             });
             services.AddMemoryCache();
+            services.AddDbContext<ProductsDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultDatabase")));
         }
 
         public void ConfigureContainer(ContainerBuilder builder)
