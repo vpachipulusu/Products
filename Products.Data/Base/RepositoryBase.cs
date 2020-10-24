@@ -88,30 +88,22 @@ namespace Products.Data.Base
             else
                 entity.DateUpdated = DateTime.Now;
 
-            try
+            var query = entity.Id == 0 ? GetInsertQuery() : GetUpdateQuery();
+            await using (var connection = await CreateConnectionAsync())
             {
-                var query = entity.Id == 0 ? GetInsertQuery() : GetUpdateQuery();
-                await using (var connection = await CreateConnectionAsync())
+                if (entity.Id == 0)
                 {
-                    if (entity.Id == 0)
-                    {
-                        var insertedEntity = await connection.QuerySingleOrDefaultAsync<T>(query, entity);
-                        entity.Id = insertedEntity.Id;
-                        entity.RowVersion = insertedEntity.RowVersion;
-                    }
-                    else
-                    {
-                        var r = await connection.ExecuteAsync(query, entity);
-                        if (r == 0)
-                            throw new DBConcurrencyException($"Update on entity failed.");
-
-                    }
+                    var insertedEntity = await connection.QuerySingleOrDefaultAsync<T>(query, entity);
+                    entity.Id = insertedEntity.Id;
+                    entity.RowVersion = insertedEntity.RowVersion;
                 }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                throw;
+                else
+                {
+                    var r = await connection.ExecuteAsync(query, entity);
+                    if (r == 0)
+                        throw new DBConcurrencyException($"Update on entity failed.");
+
+                }
             }
 
             return entity;
@@ -199,7 +191,7 @@ namespace Products.Data.Base
             });
 
             updateQuery.Remove(updateQuery.Length - 1, 1);
-            updateQuery.Append(" WHERE Id=@Id AND RowVersion=@RowVersion");
+            updateQuery.Append(" WHERE Id=@Id ");
 
             return updateQuery.ToString();
         }

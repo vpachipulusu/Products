@@ -95,10 +95,9 @@ namespace Products.Api.Controllers
                     if (entity == null)
                         return new NotFoundResult();
 
-                    entity.ProductName = product.ProductName;
-                    entity.ProductDescription = product.ProductDescription;
-
-                    return Ok(await ProductService.UpsertAsync(entity));
+                    var updatedEntity = _mapper.Map<ProductBase>(product);
+                    updatedEntity.Id = id;
+                    return Ok(await ProductService.UpsertAsync(updatedEntity));
                 }
 
                 return new BadRequestResult();
