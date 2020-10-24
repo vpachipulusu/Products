@@ -34,6 +34,7 @@ namespace Products.Data.EF.Migrations.Context
         public DbSet<UserBase> UserBase { get; set; }
         public DbSet<UserRoleBase> UserRoleBase { get; set; }
         public DbSet<EntityBase> EntityBase { get; set; }
+        public DbSet<ProductCategoryLink> ProductCategoryLink { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -46,6 +47,7 @@ namespace Products.Data.EF.Migrations.Context
 
             modelBuilder.ApplyConfiguration(new ProductBaseEntityTypeConfig());
             modelBuilder.ApplyConfiguration(new ProductCategoryBaseEntityTypeConfig());
+            modelBuilder.ApplyConfiguration(new ProductCategoryLinkEntityTypeConfig());
             modelBuilder.ApplyConfiguration(new ProductSubCategoryBaseEntityTypeConfig());
 
             modelBuilder.ApplyConfiguration(new SalesOrderBaseEntityTypeConfig());

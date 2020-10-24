@@ -1,5 +1,4 @@
-﻿using Products.Domain.DataModels.Organization;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Products.Domain.DataModels.Sales
 {
@@ -10,9 +9,6 @@ namespace Products.Domain.DataModels.Sales
         public string SalesOrderProductStatus { get; set; }
         [Required]
         public int SalesProductStatusSequence { get; set; }
-        [Required]
-        public int OrganizationBaseId { get; set; }
-        public virtual OrganizationBase OrganizationBase { get; set; }
     }
 
 }

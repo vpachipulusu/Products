@@ -16,7 +16,7 @@ namespace Products.Data.EF.Migrations.Configuration.Product
             builder.Property(b => b.ProductDescription).HasColumnType("nvarchar(20)").IsRequired();
             builder.Property(b => b.ProductNetPrice).HasColumnType("decimal(18, 4)").IsRequired();
 
-            builder.HasIndex(c => new { c.OrganizationBaseId, c.ProductSubCategoryBaseId });
+            builder.HasKey(c => new { c.OrganizationBaseId, c.ProductSubCategoryBaseId });
         }
     }
 }

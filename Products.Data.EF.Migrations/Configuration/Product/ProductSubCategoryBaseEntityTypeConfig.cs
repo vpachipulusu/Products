@@ -13,8 +13,6 @@ namespace Products.Data.EF.Migrations.Configuration.Product
 
             builder.Property(b => b.SubCategoryCode).HasColumnType("nvarchar(20)").IsRequired();
             builder.Property(b => b.SubCategory).HasColumnType("nvarchar(60)").IsRequired();
-
-            builder.HasIndex(c => new { c.OrganizationBaseId, c.ProductCategoryBaseId });
         }
     }
 }

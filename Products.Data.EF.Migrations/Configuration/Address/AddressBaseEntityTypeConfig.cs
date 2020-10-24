@@ -20,7 +20,7 @@ namespace Products.Data.EF.Migrations.Configuration.Address
             builder.Property(b => b.AddressL6).HasColumnType("varchar(80)");
             builder.Property(b => b.AddressL7).HasColumnType("varchar(80)");
 
-            builder.HasIndex(c => new { c.AddressTypeBaseId, c.OrganizationBaseId, c.EntityBaseId });
+            builder.HasKey(c => new { c.AddressTypeBaseId, c.OrganizationBaseId, c.EntityBaseId });
         }
     }
 }

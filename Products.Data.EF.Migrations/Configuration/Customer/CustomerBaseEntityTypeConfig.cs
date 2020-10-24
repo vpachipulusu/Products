@@ -17,7 +17,7 @@ namespace Products.Data.EF.Migrations.Configuration.Customer
             builder.Property(b => b.CustomerEmail).HasColumnType("varchar(150)").IsRequired();
             builder.Property(b => b.CustomerWeb).HasColumnType("varchar(250)").IsRequired();
 
-            builder.HasIndex(c => new { c.OrganizationBaseId });
+            builder.HasKey(c => new { c.OrganizationBaseId });
         }
     }
 }

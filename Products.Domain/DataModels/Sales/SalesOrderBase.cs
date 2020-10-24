@@ -8,11 +8,9 @@ namespace Products.Domain.DataModels.Sales
 {
     public class SalesOrderBase : EntityModelBase
     {
-        [Required]
-        public int SalesOrderStatusBaseId { get; set; }
+        public int? SalesOrderStatusBaseId { get; set; }
         public virtual SalesOrderStatusBase SalesOrderStatusBase { get; set; }
-        [Required]
-        public int CustomerBaseId { get; set; }
+        public int? CustomerBaseId { get; set; }
         public virtual CustomerBase CustomerBase { get; set; }
         [Required]
         [Column(TypeName = "datetime")]

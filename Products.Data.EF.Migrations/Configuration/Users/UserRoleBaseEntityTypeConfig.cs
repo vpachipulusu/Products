@@ -17,8 +17,6 @@ namespace Products.Data.EF.Migrations.Configuration.Users
 
             builder.Property(b => b.Role).HasColumnType("varchar(150)").IsRequired();
 
-            builder.HasIndex(c => new { c.OrganizationBaseId });
-
             builder.HasData(
                 new { Id = (int)UserRoleType.Administrator, Role = UserRoleType.Administrator.GetDescription(), DateCreated = DateTime.Parse("2020-10-11 17:38:05.150"), OrganizationBaseId = 1, SystemAdminId = 1 },
                 new { Id = (int)UserRoleType.Normal, Role = UserRoleType.Normal.GetDescription(), DateCreated = DateTime.Parse("2020-10-11 17:38:15.463"), OrganizationBaseId = 1, SystemAdminId = 1 },

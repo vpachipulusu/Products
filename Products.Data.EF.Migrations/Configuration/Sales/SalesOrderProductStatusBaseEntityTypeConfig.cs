@@ -17,7 +17,6 @@ namespace Products.Data.EF.Migrations.Configuration.Sales
 
             builder.Property(b => b.SalesOrderProductStatus).HasColumnType("varchar(150)").IsRequired();
 
-            builder.HasIndex(c => new { c.OrganizationBaseId });
             builder.HasData(
                 new { Id = (int)OrderProductStatusType.Booked, SalesOrderProductStatus = OrderProductStatusType.Booked.GetDescription(), DateCreated = DateTime.Parse("2020-10-11 18:06:43.000"), SalesProductStatusSequence = 1, OrganizationBaseId = 1 },
                 new { Id = (int)OrderProductStatusType.Dispatched, SalesOrderProductStatus = OrderProductStatusType.Dispatched.GetDescription(), DateCreated = DateTime.Parse("2020-10-11 18:06:48.500"), SalesProductStatusSequence = 2, OrganizationBaseId = 1 },

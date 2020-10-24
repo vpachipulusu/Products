@@ -16,7 +16,6 @@ namespace Products.Data.EF.Migrations.Configuration.Address
 
             builder.Property(b => b.AddressType).HasColumnType("varchar(50)").IsRequired();
 
-            builder.HasIndex(c => new { c.OrganizationBaseId });
             builder.HasData(
                 new { Id = (int)AddressType.Billing, AddressType = AddressType.Billing.GetDescription(), DateCreated = DateTime.Parse("2020-10-11 17:38:05.150"), OrganizationBaseId = 1 },
                 new { Id = (int)AddressType.Delivery, AddressType = AddressType.Delivery.GetDescription(), DateCreated = DateTime.Parse("2020-10-11 17:38:15.463"), OrganizationBaseId = 1 },

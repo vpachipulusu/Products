@@ -25,7 +25,6 @@ namespace Products.Data.EF.Migrations.Configuration
             builder.Property(b => b.EntityDescription).HasColumnType("varchar(1000)").IsRequired();
             builder.Property(b => b.EntityStatus).HasColumnType("varchar(50)").IsRequired();
 
-            builder.HasIndex(c => new { c.OrganizationBaseId });
             builder.HasData(
                 new { Id = 1, Entity = "Organization", EntityName = nameof(OrganizationBase), EntityType = "Table", EntityDescription = "Organization Details", EntityStatus = "Active", DateCreated = DateTime.Parse("2020-10-11 14:52:26.697"), OrganizationBaseId = 1, SystemAdminId = 1 },
                 new { Id = 2, Entity = "Customer", EntityName = nameof(CustomerBase), EntityType = "Table", EntityDescription = "Customer Details", EntityStatus = "Active", DateCreated = DateTime.Parse("2020-10-11 14:52:26.697"), OrganizationBaseId = 1, SystemAdminId = 1 },
