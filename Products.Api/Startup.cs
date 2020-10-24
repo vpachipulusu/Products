@@ -48,6 +48,7 @@ namespace Products.Api
             {
                 app.UseDeveloperExceptionPage();
             }
+            UpdateDatabase(app);
 
             app.UseHttpsRedirection();
 
@@ -65,6 +66,17 @@ namespace Products.Api
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Products Api");
             });
+        }
+
+        private static void UpdateDatabase(IApplicationBuilder app)
+        {
+            using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+            {
+                using (var context = serviceScope.ServiceProvider.GetService<ProductsDbContext>())
+                {
+                    context.Database.Migrate();
+                }
+            }
         }
     }
 }
