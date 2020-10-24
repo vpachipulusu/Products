@@ -16,8 +16,6 @@ namespace Products.Data.EF.Migrations.Configuration.Users
             builder.Property(b => b.UserPassword).HasColumnType("nvarchar(30)").IsRequired();
             builder.Property(b => b.UserName).HasColumnType("varchar(120)").IsRequired();
             builder.Property(b => b.UserType).HasColumnType("varchar(20)").IsRequired();
-
-            builder.HasKey(c => new { c.OrganizationBaseId, c.UserRoleBaseId });
         }
     }
 }

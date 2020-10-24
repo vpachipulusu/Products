@@ -11,8 +11,6 @@ namespace Products.Data.EF.Migrations.Configuration.Sales
             builder.Property(b => b.DateCreated).IsRequired();
             builder.Property(b => b.RowVersion).IsRequired();
             builder.Property(b => b.SalesOrderDate).IsRequired();
-
-            builder.HasKey(c => new { c.OrganizationBaseId });
         }
     }
 }
