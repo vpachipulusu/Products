@@ -17,7 +17,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Products.Common", "Products
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Products.Data.EF.Migrations", "Products.Data.EF.Migrations\Products.Data.EF.Migrations.csproj", "{F2F91DE4-3480-4735-8F69-B9168986850C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Products.Web", "Products.Web\Products.Web.csproj", "{B88DA536-1ECC-429A-A4F7-0A47B9ABE656}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Products.Web", "Products.Web\Products.Web.csproj", "{B88DA536-1ECC-429A-A4F7-0A47B9ABE656}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
