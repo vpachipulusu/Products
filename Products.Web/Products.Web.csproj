@@ -33,6 +33,15 @@
 		<PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.113" PrivateAssets="all">
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
 		</PackageReference>
+		<PackageReference Include="Microsoft.AspNetCore.SignalR.Core" Version="1.1.0" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="Areas\Administration\Controllers\" />
+	  <Folder Include="Areas\Administration\Data\" />
+	  <Folder Include="Areas\Administration\Models\" />
+	  <Folder Include="Areas\Identity\Controllers\" />
+	  <Folder Include="Areas\Identity\Data\" />
+	  <Folder Include="Areas\Identity\Models\" />
 	</ItemGroup>
 
 

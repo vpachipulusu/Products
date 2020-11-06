@@ -6,6 +6,7 @@
         public const string Administration = "Administration";
         public const string AdministratorRoleName = "Administrator";
         public const string CustomerRoleName = "Customer";
+        public const string RotativaPath = "wwwroot/Rotativa";
 
         public static class Coockies
         {

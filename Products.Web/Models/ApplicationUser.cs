@@ -1,10 +1,10 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Products.Web.Models.Interfaces;
-using System;
-using System.Collections.Generic;
-
-namespace Products.Web.Models
+﻿namespace Products.Web.Models
 {
+    using Microsoft.AspNetCore.Identity;
+    using Products.Web.Models.Interfaces;
+    using System;
+    using System.Collections.Generic;
+
     public class ApplicationUser : IdentityUser, IAuditInfo, IDeletableEntity
     {
         public ApplicationUser()
