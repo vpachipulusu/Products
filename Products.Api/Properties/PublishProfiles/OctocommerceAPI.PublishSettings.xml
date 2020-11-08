@@ -1,0 +1,10 @@
+﻿<publishData>
+   <publishProfile 
+   publishUrl="https://reddyvelagala-001-site1.dtempurl.com:8172/msdeploy.axd?site=reddyvelagala-001-site1" 
+   msdeploySite="reddyvelagala-001-site1" 
+   destinationAppUrl="http://reddyvelagala-001-site1.dtempurl.com/" 
+   profileName="Default Settings" 
+   publishMethod="MSDeploy" userName="reddyvelagala-001" 
+   AllowUntrustedCertificate="True"
+   /> 
+</publishData>
