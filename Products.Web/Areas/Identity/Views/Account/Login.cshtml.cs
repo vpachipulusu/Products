@@ -1,4 +1,3 @@
-
 namespace Products.Web.Areas.Identity.Views.Account
 {
     using Microsoft.AspNetCore.Authentication;

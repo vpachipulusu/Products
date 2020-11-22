@@ -85,18 +85,17 @@ namespace Products.Api.Controllers
 
         // PUT api/<ProductController>/5
         [HttpPut("{id}")]
-        public virtual async Task<IActionResult> Put(int id, [FromBody] ProductBaseViewModel product)
+        public virtual async Task<IActionResult> Put([FromBody] ProductBaseViewModel product)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    var entity = await ProductService.GetByIdAsync(id);
+                    var entity = await ProductService.GetByIdAsync(product.Id);
                     if (entity == null)
                         return new NotFoundResult();
 
                     var updatedEntity = _mapper.Map<ProductBase>(product);
-                    updatedEntity.Id = id;
                     return Ok(await ProductService.UpsertAsync(updatedEntity));
                 }
 

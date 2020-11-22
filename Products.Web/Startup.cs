@@ -28,6 +28,9 @@ namespace Products.Web
                 options.EnableDetailedErrors = true;
             });
             services.AddSession();
+            services.AddHttpClient();
+            services.AddControllersWithViews().AddRazorRuntimeCompilation();
+            services.AddSingleton(this.Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
