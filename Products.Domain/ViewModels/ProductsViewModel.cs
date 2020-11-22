@@ -1,18 +1,18 @@
 ﻿using Products.Domain.Dto.Product;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Products.Domain.ViewModels
 {
-   public class ProductsViewModel
+    public class ProductsViewModel
     {
         public ProductsViewModel()
         {
             this.Products = new List<ProductBaseViewModel>();
         }
 
-        public IEnumerable<ProductBaseViewModel>  Products { get; set; }
+        public IEnumerable<ProductBaseViewModel> Products { get; set; }
+
+        public int CurrentCategoryId { get; set; }
 
         public int PagesCount { get; set; }
 

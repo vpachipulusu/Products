@@ -2,6 +2,35 @@
 
 <div class="container">
     <div class="component">
+        @*<form method="post" class="form-inline mb-4 offset-3" asp-action="Index" asp-controller="Products">
+                    <select class="custom-select col-5 ml-0"
+                            asp-items="selectList"
+                            name="categoryId">
+                        @if (Model.CurrentCategory == null)
+                        {
+            <option selected>
+                Filter By Category
+            </option>}
+                    </select>
+                    <button type="submit" class="btn btn-primary ml-3">
+                        <span>Select Category</span>
+                    </button>
+                </form>*@
+        @*<form method="get" class="form-subscribe form-inline mb-4" asp-action="AllQuizzesCreatedByTeacher" asp-controller="Products">
+                Search by:
+                <select id="select" class="btn btn-light mt-0 mt-md-3 mt-lg-0 ml-2 mr-3" name="searchCriteria">
+                    <option value="ProductCode" selected="@(Model.SearchType == "ProductCode" ? true : false)">ProductCode</option>
+                    <option value="ProductName" selected="@(Model.SearchType == "ProductName" ? true : false)">ProductName</option>
+                    <option value="ProductDescription" selected="@(Model.SearchType == "ProductDescription" ? true : false)">ProductDescription</option>
+                </select>
+                <div class="form-group flex-grow-1">
+                    <label class="sr-only" for="email4">Email</label>
+                    <input id="input" type="text" class="form-control flex-grow-1 mr-2"
+                           placeholder="Choose criteria and enter your text to search..." name="searchText" value="@Model.SearchString">
+                    <button type="submit" id="search" class="btn btn-primary mt-0 mt-md-3 mt-lg-0">Search</button>
+                </div>
+                <input type="hidden" name="categoryId" value="@categoryId" />
+            </form>*@
         <nav class="navbar navbar-expand-lg navbar-dark bg-neutral p-2">
             <div class="container">
                 <h5 class="mb-0">Products Management</h5>
@@ -91,7 +120,7 @@
                                 </form>
                             </td>
                         </tr>
-   }
+                    }
                 }
             </tbody>
         </table>
