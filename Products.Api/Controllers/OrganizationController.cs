@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Products.Api.Base;
+using Products.Api.Filters;
 using Products.Data.Interfaces;
 using Products.Domain.DataModels.Organization;
 using Products.Domain.Dto.Organization;
@@ -12,6 +13,7 @@ namespace Products.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [TypeFilter(typeof(ApiKeyAuthAttribute))]
     public class OrganizationController : CustomBaseController
     {
         protected readonly IOrganizationBaseRepository _organizationBaseRepository;
