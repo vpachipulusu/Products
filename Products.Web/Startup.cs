@@ -27,10 +27,12 @@ namespace Products.Web
             {
                 options.EnableDetailedErrors = true;
             });
+            services.AddOptions();
             services.AddSession();
             services.AddHttpClient();
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddSingleton(this.Configuration);
+            services.Configure<OrganizationSettings>(Configuration.GetSection(nameof(OrganizationSettings)));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
