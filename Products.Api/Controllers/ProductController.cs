@@ -84,7 +84,7 @@ namespace Products.Api.Controllers
         }
 
         // PUT api/<ProductController>/5
-        [HttpPut("{id}")]
+        [HttpPut]
         public virtual async Task<IActionResult> Put([FromBody] ProductBaseViewModel product)
         {
             try
