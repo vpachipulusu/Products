@@ -46,6 +46,24 @@ namespace Products.Api.Controllers
             }
         }
 
+        [HttpGet("[Action]")]
+        public virtual async Task<IActionResult> GetProductById(int id)
+        {
+            try
+            {
+                var model = await ProductService.GetProductById(id);
+                if (model == null)
+                    return new NotFoundResult();
+
+                return new ObjectResult(model);
+            }
+            catch (Exception e)
+            {
+                base.LogError<ProductController>(e);
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
+        }
+
         // GET api/<ProductController>
         [HttpGet]
         public virtual async Task<IActionResult> Get()

@@ -3,6 +3,7 @@ using Microsoft.Extensions.Options;
 using Products.Data.Interfaces;
 using Products.Domain.DataModels.Organization;
 using Products.Domain.Dto;
+using Products.Domain.Dto.Product;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -59,6 +60,20 @@ namespace Products.Data.Repositories
                                                new { OrganizationName = model.OrganizationName, Active = model.Active, SystemAdminId = model.SystemAdminId, OAuthKey = model.OAuthKey },
                                                commandType: CommandType.StoredProcedure);
             }
+        }
+
+        public async Task<List<Organization>> GetOrganizations()
+        {
+            IEnumerable<Organization> organization;
+
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                await connection.OpenAsync();
+
+                organization = await connection.QueryAsync<Organization>("usp_organizationbase_select",
+                                                                                  commandType: CommandType.StoredProcedure);
+            }
+            return organization.ToList();
         }
 
     }

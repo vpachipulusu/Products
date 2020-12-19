@@ -52,8 +52,8 @@ namespace Products.Web.Controllers
 
         public async Task<IActionResult> EditDetailsInput(int id)
         {
-            var getProductResponse = await HttpRequestFactory.Get($"{_organizationSettings.Value.WebApiUri}/Product/{id}", _organizationSettings.Value.Key);
-            var productViewModel = JsonConvert.DeserializeObject<ProductBaseViewModel>(await getProductResponse.Content.ReadAsStringAsync());
+            var getProductResponse = await HttpRequestFactory.Get($"{_organizationSettings.Value.WebApiUri}/Product/GetProductById?id={id}", _organizationSettings.Value.Key);
+            var productViewModel = JsonConvert.DeserializeObject<ProductViewModel>(await getProductResponse.Content.ReadAsStringAsync());
             return this.View(productViewModel);
         }
 

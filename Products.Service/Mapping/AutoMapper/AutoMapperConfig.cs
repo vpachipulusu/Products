@@ -30,8 +30,6 @@ namespace Products.Service.Mapping.AutoMapper
             CreateMap<OrganizationBase, OrganizationBaseViewModel>().ReverseMap();
 
             CreateMap<ProductBase, ProductBaseViewModel>().ReverseMap();
-            CreateMap<ProductCategoryBase, ProductCategoryBaseViewModel>().ReverseMap();
-            CreateMap<ProductSubCategoryBase, ProductSubCategoryBaseViewModel>().ReverseMap();
 
             CreateMap<SalesOrderBase, SalesOrderBaseViewModel>().ReverseMap();
             CreateMap<SalesOrderProductBase, SalesOrderProductBaseViewModel>().ReverseMap();
